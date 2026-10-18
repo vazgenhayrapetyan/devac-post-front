@@ -11,13 +11,16 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         try {
-            await api.post("/register", {
+            const response = await api.post("/register", {
                 username,
                 email,
                 password,
                 role
             });
+            sessionStorage.setItem('auth_token', response.data.access_token);
+            alert('Գրանցումը հաջողությամբ կատարվեց։');
             navigate("/login");
         } catch (error) {
             console.error("Խնդիր առաջացավ:", error);
