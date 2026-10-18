@@ -13,13 +13,12 @@ const Register = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await api.post("/register", {
+            await api.post("/register", {
                 username,
                 email,
                 password,
                 role
             });
-            sessionStorage.setItem('auth_token', response.data.access_token);
             alert('Գրանցումը հաջողությամբ կատարվեց։');
             navigate("/login");
         } catch (error) {
