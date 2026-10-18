@@ -81,9 +81,6 @@ export default function Login() {
                         {loading ? 'Խնդրում ենք սպասել...' : 'Մուտք Գործել'}
                     </button>
                 </form>
-                <a href="/register" className="text-blue-600 hover:underline text-sm block text-center mt-4">
-                    Գրանցվել
-                </a>
             </div>
         </div>
     );
