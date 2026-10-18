@@ -30,7 +30,11 @@ const Register = () => {
         <div className="flex items-center justify-center h-screen bg-gray-100 p-4">
             <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
                 <h2  className="text-2xl font-bold text-center text-gray-800 mb-6">Register</h2>
-                {error && (<p style={{ color: 'red' }}>{error}</p>)}
+                {error && (
+                    <div className="mb-4 p-3 bg-red-100 text-red-700 rounded text-sm text-center">
+                        {error}
+                    </div>
+                )}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Username:</label>
