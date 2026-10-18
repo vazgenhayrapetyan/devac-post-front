@@ -23,16 +23,22 @@ const Register = () => {
             alert('Գրանցումը հաջողությամբ կատարվեց։');
             navigate("/login");
         } catch (error) {
-            console.error("Խնդիր առաջացավ:", error);
+            if (err.response && err.response.data.errors) {
+                setError(Object.values(err.response.data.errors).flat().join(' '));
+            } else {
+                setError('Գրանցման սխալ։ Ստուգեք տվյալները։');
+            }
         }
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username:</label>
+        <div className="flex items-center justify-center h-screen bg-gray-100 p-4">
+            <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
+                <h2  className="text-2xl font-bold text-center text-gray-800 mb-6">Register</h2>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Username:</label>
                     <input
                         type="text"
                         value={username}
@@ -70,6 +76,7 @@ const Register = () => {
                     Register
                 </button>
             </form>
+        </div>
         </div>
     );
 };
