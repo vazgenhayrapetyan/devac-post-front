@@ -11,7 +11,6 @@ export default function Posts() {
     const [meta, setMeta] = useState(null);
     const navigate = useNavigate();
 
-    // Ֆունկցիա՝ բեքենդից գրառումները բեռնելու համար
     const fetchPosts = async () => {
         setLoading(true);
         try {
@@ -51,7 +50,7 @@ export default function Posts() {
             try {
                 await api.delete(`/posts/${id}`);
                 alert('Գրառումը հաջողությամբ ջնջվեց:');
-                fetchPosts(); // Թարմացնում ենք ցանկը
+                fetchPosts();
             } catch (err) {
                 if (err.response && err.response.status === 403) {
                     alert('Դուք չունեք ջնջելու իրավունք (Միայն Admin-ը կարող է ջնջել):');
@@ -100,24 +99,17 @@ export default function Posts() {
                     </div>
 
                     <div className="w-48">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Ստատուս</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Կարգավիճակ</label>
                         <select 
                             value={status}
                             onChange={(e) => { setStatus(e.target.value); setPage(1); }}
                             className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none"
                         >
                             <option value="">Բոլորը</option>
-                            <option value="published">Published</option>
-                            <option value="draft">Draft</option>
+                            <option value="published">Հրապարակված</option>
+                            <option value="draft">Սևագիր</option>
                         </select>
                     </div>
-
-                    <button 
-                        type="submit"
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium transition"
-                    >
-                        Որոնել
-                    </button>
 
                     <div className="flex gap-2">
                         <button 
@@ -131,7 +123,7 @@ export default function Posts() {
                             onClick={handlePrint}
                             className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded font-medium transition flex items-center gap-1"
                         >
-                            🖨️ Տպել
+                            Տպել
                         </button>
                     </div>
                 </form>
@@ -149,7 +141,7 @@ export default function Posts() {
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Վերնագիր</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Հեղինակ</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ստատուս</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Կարգավիճակ</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ստեղծվել է</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Գործողություններ</th>
                             </tr>
@@ -189,8 +181,6 @@ export default function Posts() {
                     </table>
                 )}
 
-
-                {/* Էջերի Նավարկում (Pagination Controls) */}
                 {meta && meta.last_page > 1 && (
                     <div className="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center">
                         <button 

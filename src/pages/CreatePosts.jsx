@@ -16,14 +16,12 @@ export default function CreatePost() {
         setLoading(true);
 
         try {
-            // Հարցում ենք ուղարկում Laravel-ի posts.store API-ին
             await api.post('/posts', { title, content, status });
             
-            // Հաջողությամբ ստեղծվելուց հետո վերադառնում ենք ցանկի էջ
             navigate('/posts');
         } catch (err) {
             if (err.response && err.response.status === 403) {
-                setError('Դուք չունեք նոր գրառում ստեղծելու իրավունք (Search դեր):');
+                setError('Դուք չունեք նոր գրառում ստեղծելու իրավունք:');
             } else if (err.response && err.response.data) {
                 setError(err.response.data.message || 'Վալիդացիայի կամ սերվերի սխալ:');
             } else {
@@ -56,7 +54,7 @@ export default function CreatePost() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Վերնագիր (Title)
+                            Վերնագիր
                         </label>
                         <input
                             type="text"
@@ -70,7 +68,7 @@ export default function CreatePost() {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Բովանդակություն (Content)
+                            Բովանդակություն
                         </label>
                         <textarea
                             required
@@ -84,15 +82,15 @@ export default function CreatePost() {
 
                     <div className="w-48">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Կարգավիճակ (Status)
+                            Կարգավիճակ
                         </label>
                         <select
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
-                            <option value="draft">Draft (Սևագիր)</option>
-                            <option value="published">Published (Հրապարակված)</option>
+                            <option value="draft">Սևագիր</option>
+                            <option value="published">Հրապարակված</option>
                         </select>
                     </div>
 

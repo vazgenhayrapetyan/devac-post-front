@@ -38,7 +38,7 @@ export default function EditPost() {
             navigate('/posts');
         } catch (err) {
             if (err.response && err.response.status === 403) {
-                setError('Դուք չունեք այս գրառումը խմբագրելու իրավունք (Search դեր):');
+                setError('Դուք չունեք այս գրառումը խմբագրելու իրավունք:');
             } else if (err.response && err.response.data) {
                 setError(err.response.data.message || 'Սերվերի սխալ:');
             } else {
@@ -102,8 +102,8 @@ export default function EditPost() {
                             onChange={(e) => setStatus(e.target.value)}
                             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
-                            <option value="draft">Draft (Սևագիր)</option>
-                            <option value="published">Published (Հրապարակված)</option>
+                            <option value="draft">Սևագիր</option>
+                            <option value="published">Հրապարակված</option>
                         </select>
                     </div>
 
