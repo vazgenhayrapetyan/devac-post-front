@@ -1,6 +1,6 @@
-import react, {useState} from "react";
-import api from "../api";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -34,6 +34,7 @@ const Register = () => {
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
                 <div>
@@ -42,6 +43,7 @@ const Register = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
                 <div>
@@ -50,11 +52,12 @@ const Register = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
                 <div>
                     <label>Role:</label>
-                    <select value={role} onChange={(e) => setRole(e.target.value)}>
+                    <select value={role} onChange={(e) => setRole(e.target.value)} className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                         <option value="editor">Editor</option>
